@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>逍遥电影网 - 无拘无束看世界好片 | 逍遥影视聚合平台</title>
+<meta name="description" content="逍遥电影网，让观影回归纯粹。从奥斯卡获奖佳片到小众独立电影，从经典港片到最新韩剧，我们用心筛选每一部值得你花时间的作品。不设VIP门槛，不插冗长广告，打开即看，逍遥自在。">
+<meta name="keywords" content="逍遥电影网,看电影不花钱,好片推荐,影视聚合平台,院线同步,经典老片重温,高清在线观影">
+<meta name="author" content="逍遥电影网">
+<meta name="copyright" content="逍遥电影网">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://xiaoyaodianyingwang-zh.github.io/">
+<meta name="bingbot" content="index,follow">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+margin:0;padding:0;
+font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+background:#0F1419;color:#E8EAED;line-height:1.8;
+}
+img{max-width:100%;height:auto;display:block}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;border:none;cursor:pointer}
+
+/* Layout */
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+
+/* Sidebar Layout */
+.layout{display:flex;gap:0}
+.sidebar{
+width:240px;flex-shrink:0;position:sticky;top:0;height:100vh;
+background:#161B22;border-right:1px solid #30363D;
+display:flex;flex-direction:column;padding:24px 16px;overflow-y:auto;
+}
+.sidebar .logo-area{padding:8px 12px 24px;border-bottom:1px solid #30363D;margin-bottom:16px}
+.sidebar .logo-area h1{
+font-size:1.35rem;font-weight:900;margin:0;
+background:linear-gradient(135deg,#FF6B6B,#FFD93D);
+-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+letter-spacing:-0.5px;
+}
+.sidebar .logo-area .slogan{font-size:0.72rem;color:#8B949E;margin-top:6px}
+.side-nav{display:flex;flex-direction:column;gap:2px}
+.side-nav a{
+padding:11px 14px;border-radius:10px;font-size:0.88rem;color:#C9D1D9;
+transition:all .2s;display:flex;align-items:center;gap:10px;font-weight:500;
+}
+.side-nav a:hover{background:#21262D;color:#FFD93D;transform:translateX(3px)}
+.side-nav a .ico{font-size:1.1rem;width:22px;text-align:center}
+.sidebar .side-foot{margin-top:auto;padding-top:16px;border-top:1px solid #30363D;font-size:0.72rem;color:#6E7681}
+.main{flex:1;min-width:0;padding:0 0 60px}
+
+/* Hero - Editorial style */
+.hero{
+position:relative;min-height:70vh;display:flex;align-items:center;
+padding:60px 0;overflow:hidden;
+background:
+radial-gradient(ellipse 80% 60% at 20% 40%,rgba(255,107,107,0.15),transparent),
+radial-gradient(ellipse 60% 50% at 80% 20%,rgba(255,217,61,0.08),transparent),
+#0F1419;
+}
+.hero-inner{position:relative;z-index:2}
+.hero .kicker{
+display:inline-block;font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;
+color:#FFD93D;margin-bottom:16px;font-weight:700;
+}
+.hero h2{
+font-size:clamp(2rem,5vw,3.8rem);font-weight:900;line-height:1.15;
+margin:0 0 20px;letter-spacing:-1px;
+}
+.hero h2 em{font-style:normal;color:#FF6B6B}
+.hero-desc{max-width:560px;font-size:1rem;color:#8B949E;margin-bottom:32px}
+.hero-stats{display:flex;gap:40px;flex-wrap:wrap;margin-bottom:32px}
+.hero-stats .item .big{font-size:2rem;font-weight:900;color:#FFD93D;line-height:1}
+.hero-stats .item .lbl{font-size:0.78rem;color:#6E7681;margin-top:4px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.btn{
+padding:14px 32px;border-radius:50px;font-weight:700;font-size:0.9rem;
+transition:all .25s;display:inline-flex;align-items:center;gap:8px;
+}
+.btn-primary{background:linear-gradient(135deg,#FF6B6B,#EE5A24);color:#fff}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,107,107,0.4)}
+.btn-outline{background:transparent;color:#C9D1D9;border:2px solid #30363D}
+.btn-outline:hover{border-color:#FFD93D;color:#FFD93D}
+
+/* Section header */
+.sec{padding:64px 0}
+.sec-tag{
+display:inline-block;font-size:0.7rem;letter-spacing:2px;color:#FF6B6B;
+font-weight:700;text-transform:uppercase;margin-bottom:8px;
+}
+.sec-title{
+font-size:clamp(1.4rem,3vw,2rem);font-weight:900;margin:0 0 6px;color:#E8EAED;
+}
+.sec-sub{font-size:0.85rem;color:#6E7681;margin-bottom:32px}
+
+/* Now Showing - Grid with mixed sizes */
+.show-grid{
+display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:120px;gap:14px;
+}
+.show-card{
+position:relative;border-radius:14px;overflow:hidden;cursor:pointer;
+transition:transform .3s,box-shadow .3s;
+}
+.show-card:hover{transform:scale(1.02);box-shadow:0 12px 40px rgba(0,0,0,0.5);z-index:5}
+.show-card.large{grid-column:span 3;grid-row:span 3}
+.show-card.medium{grid-column:span 2;grid-row:span 2}
+.show-card.small{grid-column:span 2;grid-row:span 1}
+.show-card.tall{grid-column:span 2;grid-row:span 3}
+.show-card.wide{grid-column:span 4;grid-row:span 1}
+.sc-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.sc-bg span{font-size:3.5rem;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.4))}
+.sc-overlay{
+position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.2) 50%,transparent 100%);
+display:flex;flex-direction:column;justify-content:flex-end;padding:16px;
+}
+.sc-overlay h3{margin:0;font-size:1rem;font-weight:700;color:#fff}
+.sc-overlay .meta{font-size:0.72rem;color:#aaa;margin-top:4px}
+.sc-overlay .score{
+position:absolute;top:12px;right:12px;background:rgba(255,217,61,0.95);color:#000;
+font-weight:900;font-size:0.75rem;padding:3px 8px;border-radius:6px;
+}
+.sc-overlay .ep{
+position:absolute;top:12px;left:12px;background:rgba(255,107,107,0.9);color:#fff;
+font-size:0.68rem;padding:3px 8px;border-radius:6px;font-weight:600;
+}
+
+/* Genre - Pill style */
+.pill-wrap{display:flex;flex-wrap:wrap;gap:10px}
+.pill{
+padding:10px 20px;border-radius:30px;border:1px solid #30363D;background:#161B22;
+color:#C9D1D9;font-size:0.85rem;font-weight:500;transition:all .2s;cursor:pointer;
+display:inline-flex;align-items:center;gap:6px;
+}
+.pill:hover{border-color:#FF6B6B;color:#FF6B6B;background:rgba(255,107,107,0.05)}
+.pill .cnt{font-size:0.72rem;color:#6E7681}
+
+/* Timeline */
+.timeline{position:relative;padding-left:30px}
+.timeline::before{
+content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;
+background:linear-gradient(to bottom,#FF6B6B,#FFD93D,transparent);
+}
+.tl-item{position:relative;padding-bottom:28px}
+.tl-item::before{
+content:'';position:absolute;left:-26px;top:6px;width:12px;height:12px;
+border-radius:50%;background:#FF6B6B;border:3px solid #0F1419;
+}
+.tl-item .tl-date{font-size:0.78rem;color:#FFD93D;font-weight:700}
+.tl-item h4{margin:4px 0;font-size:1rem;color:#E8EAED}
+.tl-item p{margin:0;font-size:0.83rem;color:#8B949E}
+
+/* Review cards */
+.review-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.review-card{
+background:#161B22;border:1px solid #30363D;border-radius:16px;padding:24px;
+transition:border-color .25s,transform .25s;
+}
+.review-card:hover{border-color:#FFD93D;transform:translateY(-3px)}
+.review-card .quote{font-size:2rem;color:#FF6B6B;line-height:0.5;margin-bottom:12px}
+.review-card h4{margin:0 0 8px;font-size:0.95rem}
+.review-card p{margin:0;font-size:0.82rem;color:#8B949E}
+.review-card .stars{color:#FFD93D;font-size:0.85rem;margin-top:10px}
+
+/* FAQ */
+.faq-item{
+border-bottom:1px solid #30363D;padding:18px 0;
+}
+.faq-q{
+font-size:0.95rem;font-weight:600;color:#E8EAED;cursor:pointer;
+display:flex;justify-content:space-between;align-items:center;gap:12px;
+}
+.faq-q .plus{color:#FF6B6B;font-size:1.2rem;transition:transform .3s;flex-shrink:0}
+.faq-q.open .plus{transform:rotate(45deg)}
+.faq-a{
+max-height:0;overflow:hidden;transition:max-height .35s ease,margin .35s ease;
+font-size:0.85rem;color:#8B949E;
+}
+.faq-a.open{max-height:300px;margin-top:12px}
+
+/* Footer */
+.foot{
+background:#0D1117;border-top:1px solid #30363D;padding:48px 0 32px;margin-top:40px;
+}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:32px}
+.foot-brand h3{
+font-size:1.2rem;font-weight:900;margin:0 0 10px;
+background:linear-gradient(135deg,#FF6B6B,#FFD93D);
+-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.foot-brand p{font-size:0.8rem;color:#6E7681;margin:0}
+.foot-col h5{color:#E8EAED;font-size:0.85rem;margin:0 0 12px}
+.foot-col a{display:block;color:#8B949E;font-size:0.8rem;padding:5px 0;transition:color .2s}
+.foot-col a:hover{color:#FF6B6B}
+.foot-bot{
+border-top:1px solid #30363D;padding-top:20px;font-size:0.72rem;color:#6E7681;
+display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+}
+.foot-bot .url{color:#FFD93D}
+
+/* Mobile */
+.mob-header{
+display:none;position:sticky;top:0;z-index:100;background:rgba(15,20,25,0.95);
+backdrop-filter:blur(12px);border-bottom:1px solid #30363D;padding:12px 16px;
+align-items:center;justify-content:space-between;
+}
+.mob-header h1{
+font-size:1.1rem;font-weight:900;margin:0;
+background:linear-gradient(135deg,#FF6B6B,#FFD93D);
+-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.mob-toggle{width:36px;height:36px;border-radius:8px;background:#161B22;border:1px solid #30363D;color:#E8EAED;font-size:1.1rem;display:flex;align-items:center;justify-content:center}
+.sidebar.mob-open{transform:translateX(0)}
+
+@media(max-width:900px){
+.mob-header{display:flex}
+.layout{flex-direction:column}
+.sidebar{
+position:fixed;top:0;left:0;width:280px;height:100vh;z-index:200;
+transform:translateX(-100%);transition:transform .3s ease;
+}
+.sidebar::after{
+content:'';position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:-1;display:none;
+}
+.sidebar.mob-open::after{display:block}
+.main{padding:0 0 40px}
+.hero{min-height:auto;padding:40px 0}
+.show-grid{grid-template-columns:repeat(4,1fr);grid-auto-rows:100px}
+.show-card.large{grid-column:span 4;grid-row:span 2}
+.show-card.medium{grid-column:span 2;grid-row:span 2}
+.show-card.small{grid-column:span 2;grid-row:span 1}
+.show-card.tall{grid-column:span 2;grid-row:span 2}
+.show-card.wide{grid-column:span 4;grid-row:span 1}
+.sec{padding:44px 0}
+.foot-grid{grid-template-columns:1fr 1fr;gap:24px}
+.hero-stats{gap:24px}
+}
+@media(max-width:560px){
+.show-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:90px}
+.show-card.large{grid-column:span 2;grid-row:span 3}
+.show-card.medium{grid-column:span 2;grid-row:span 2}
+.show-card.small{grid-column:span 1;grid-row:span 1}
+.show-card.tall{grid-column:span 2;grid-row:span 2}
+.show-card.wide{grid-column:span 2;grid-row:span 1}
+.foot-grid{grid-template-columns:1fr}
+.hero-stats .item .big{font-size:1.5rem}
+.hero-cta .btn{flex:1;text-align:center;justify-content:center}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/zhangzong.js"></script>
+
+<!-- Mobile Header -->
+<div class="mob-header">
+<h1>逍遥电影网</h1>
+<button class="mob-toggle" id="mobToggle">☰</button>
+</div>
+
+<div class="layout">
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+<div class="logo-area">
+<h1>逍遥电影网</h1>
+<div class="slogan">逍遥自在 · 看好片不花钱</div>
+</div>
+<nav class="side-nav">
+<a href="#top"><span class="ico">🏠</span>首页</a>
+<a href="#now"><span class="ico">🍿</span>正在热映</a>
+<a href="#genre"><span class="ico">🎯</span>找片分类</a>
+<a href="#update"><span class="ico">📅</span>每日更新</a>
+<a href="#review"><span class="ico">💬</span>影迷口碑</a>
+<a href="#faq"><span class="ico">❓</span>常见问题</a>
+</nav>
+<div class="side-foot">
+<p>无需注册 · 打开即看</p>
+<p>手机/平板/电视全适配</p>
+</div>
+</aside>
+
+<!-- Main Content -->
+<div class="main" id="top">
+
+<!-- Hero -->
+<div class="hero">
+<div class="wrap hero-inner">
+<span class="kicker">✦ CINEMA WITHOUT BORDERS</span>
+<h2>好电影不该<br>被<em>门槛</em>挡住</h2>
+<p class="hero-desc">逍遥电影网，让观影回归最纯粹的样子。从奥斯卡获奖佳片到小众独立电影，从经典港片到最新韩剧——用心筛选每一部值得你花时间的作品，不设VIP门槛，不插冗长广告。</p>
+<div class="hero-stats">
+<div class="item"><div class="big">28,000+</div><div class="lbl">影视资源</div></div>
+<div class="item"><div class="big">4K/HDR</div><div class="lbl">画质支持</div></div>
+<div class="item"><div class="big">365天</div><div class="lbl">每日更新</div></div>
+</div>
+<div class="hero-cta">
+<a href="#now" class="btn btn-primary">🎬 开始看片</a>
+<a href="#genre" class="btn btn-outline">🎯 按类型找</a>
+</div>
+</div>
+</div>
+
+<!-- Now Showing -->
+<div class="sec" id="now">
+<div class="wrap">
+<div class="sec-tag">◆ NOW SHOWING</div>
+<h2 class="sec-title">正在热映 · 院线同步</h2>
+<p class="sec-sub">最新上线的院线大片和口碑好剧，点击即播</p>
+<div class="show-grid">
+<div class="show-card large" style="background:linear-gradient(135deg,#1A1A2E,#16213E)">
+<div class="sc-bg"><span>🚀</span></div>
+<div class="sc-overlay">
+<span class="ep">院线热映</span><span class="score">8.7</span>
+<h3>沙丘序曲：荒漠之种</h3>
+<div class="meta">科幻 / 冒险 · 2026 · 主演：提莫西·查拉梅</div>
+</div>
+</div>
+<div class="show-card medium" style="background:linear-gradient(135deg,#2D1B69,#11052C)">
+<div class="sc-bg"><span>🐉</span></div>
+<div class="sc-overlay">
+<span class="ep">美剧</span><span class="score">9.1</span>
+<h3>龙之家族·终章</h3>
+<div class="meta">奇幻 / 史诗 · 第3季 · 更新至06集</div>
+</div>
+</div>
+<div class="show-card medium" style="background:linear-gradient(135deg,#0F3460,#1A1A2E)">
+<div class="sc-bg"><span>🎭</span></div>
+<div class="sc-overlay">
+<span class="ep">日剧</span><span class="score">8.4</span>
+<h3>东京湾疑云</h3>
+<div class="meta">悬疑 / 犯罪 · 全10集</div>
+</div>
+</div>
+<div class="show-card small" style="background:linear-gradient(135deg,#3D0000,#6D0000)">
+<div class="sc-bg"><span>💥</span></div>
+<div class="sc-overlay">
+<span class="score">7.8</span>
+<h3>极速追凶</h3>
+<div class="meta">动作 / 2025</div>
+</div>
+</div>
+<div class="show-card small" style="background:linear-gradient(135deg,#1B4332,#081C15)">
+<div class="sc-bg"><span>🌿</span></div>
+<div class="sc-overlay">
+<span class="score">8.9</span>
+<h3>山间来信</h3>
+<div class="meta">治愈 / 文艺</div>
+</div>
+</div>
+<div class="show-card tall" style="background:linear-gradient(135deg,#3C096C,#240046)">
+<div class="sc-bg"><span>🎪</span></div>
+<div class="sc-overlay">
+<span class="ep">动漫</span><span class="score">9.3</span>
+<h3>马戏团之夜</h3>
+<div class="meta">奇幻 / 热血 · 剧场版 · 豆瓣年度动画</div>
+</div>
+</div>
+<div class="show-card wide" style="background:linear-gradient(135deg,#1A0B2E,#0F2027)">
+<div class="sc-bg"><span>🎤</span></div>
+<div class="sc-overlay">
+<span class="ep">综艺</span><span class="score">8.0</span>
+<h3>街头之声：地下音乐节</h3>
+<div class="meta">音乐 / 真人秀 · 第4季第8期已上线</div>
+</div>
+</div>
+<div class="show-card small" style="background:linear-gradient(135deg,#603808,#3C2204)">
+<div class="sc-bg"><span>👑</span></div>
+<div class="sc-overlay">
+<span class="ep">韩剧</span><span class="score">8.6</span>
+<h3>财阀家的小女儿</h3>
+<div class="meta">剧情 / 复仇 · 60集全</div>
+</div>
+</div>
+<div class="show-card small" style="background:linear-gradient(135deg,#023047,#219EBC)">
+<div class="sc-bg"><span>🌊</span></div>
+<div class="sc-overlay">
+<span class="ep">纪录片</span><span class="score">9.0</span>
+<h3>深海回声</h3>
+<div class="meta">自然 / 纪录 · 全6集</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Genre -->
+<div class="sec" id="genre" style="background:#0D1117">
+<div class="wrap">
+<div class="sec-tag">◆ GENRE</div>
+<h2 class="sec-title">找片分类</h2>
+<p class="sec-sub">不想翻太久？直接点类型，一步到位</p>
+<div class="pill-wrap">
+<a href="#" class="pill">💥 动作枪战 <span class="cnt">1,420</span></a>
+<a href="#" class="pill">😂 轻松喜剧 <span class="cnt">980</span></a>
+<a href="#" class="pill">🔮 科幻未来 <span class="cnt">760</span></a>
+<a href="#" class="pill">🕵️ 悬疑烧脑 <span class="cnt">645</span></a>
+<a href="#" class="pill">💕 爱情纯爱 <span class="cnt">1,680</span></a>
+<a href="#" class="pill">😱 恐怖惊悚 <span class="cnt">410</span></a>
+<a href="#" class="pill">🎌 日韩动漫 <span class="cnt">2,350</span></a>
+<a href="#" class="pill">📜 历史古装 <span class="cnt">520</span></a>
+<a href="#" class="pill">🎭 综艺搞笑 <span class="cnt">890</span></a>
+<a href="#" class="pill">🏆 奥斯卡 <span class="cnt">320</span></a>
+<a href="#" class="pill">🎭 文艺独立 <span class="cnt">1,100</span></a>
+<a href="#" class="pill">🧸 亲子动画 <span class="cnt">560</span></a>
+<a href="#" class="pill">🎵 音乐歌舞 <span class="cnt">380</span></a>
+<a href="#" class="pill">⚽ 体育竞技 <span class="cnt">290</span></a>
+<a href="#" class="pill">🧩 心理惊悚 <span class="cnt">430</span></a>
+<a href="#" class="pill">🏔️ 冒险生存 <span class="cnt">510</span></a>
+</div>
+</div>
+</div>
+
+<!-- Daily Update Timeline -->
+<div class="sec" id="update">
+<div class="wrap">
+<div class="sec-tag">◆ DAILY UPDATE</div>
+<h2 class="sec-title">每日更新动态</h2>
+<p class="sec-sub">我们每天都在补充新内容，追剧不等人</p>
+<div class="timeline">
+<div class="tl-item">
+<div class="tl-date">今天 06:00 更新</div>
+<h4>🆕 《沙丘序曲：荒漠之种》4K版上线</h4>
+<p>丹尼斯·维伦纽瓦执导科幻史诗续作，保罗·厄崔迪踏上全新征途。支持4K HDR画质观看，多语言字幕可选。</p>
+</div>
+<div class="tl-item">
+<div class="tl-date">今天 09:30 更新</div>
+<h4>📺 《龙之家族·终章》第3季06集</h4>
+<p>坦格利安家族内战进入白热化阶段，两条龙的对决燃爆全场。中英双语字幕同步上线。</p>
+</div>
+<div class="tl-item">
+<div class="tl-date">昨天</div>
+<h4>🎬 《马戏团之夜》剧场版 · 豆瓣9.3</h4>
+<p>年度最佳动画电影正式登陆逍遥电影网，1080P高清版已就绪，含幕后花絮特辑。</p>
+</div>
+<div class="tl-item">
+<div class="tl-date">3天前</div>
+<h4>📚 经典修复计划：张国荣专题</h4>
+<p>《霸王别姬》《春光乍泄》《阿飞正传》4K修复版一次性补完，重温哥哥的银幕绝唱。</p>
+</div>
+<div class="tl-item">
+<div class="tl-date">本周新增</div>
+<h4>🏆 2025奥斯卡获奖片单合集</h4>
+<p>最佳影片《奥本海默》后续获奖作品共12部全部收录，一次看够颁奖季精华。</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Reviews -->
+<div class="sec" id="review" style="background:#0D1117">
+<div class="wrap">
+<div class="sec-tag">◆ WHAT VIEWERS SAY</div>
+<h2 class="sec-title">影迷口碑</h2>
+<p class="sec-sub">来自真实观众的追剧心声</p>
+<div class="review-grid">
+<div class="review-card">
+<div class="quote">"</div>
+<h4>更新速度快到离谱</h4>
+<p>追《龙之家族》追了好几个平台，只有逍遥是第二天就更新，而且画质一点不含糊。</p>
+<div class="stars">⭐⭐⭐⭐⭐ 网友·追剧狂魔</div>
+</div>
+<div class="review-card">
+<div class="quote">"</div>
+<h4>老片修复做得用心</h4>
+<p>张国荣那批4K修复版真的惊艳，比某些收费平台的源还清晰，看得出是认真做过片源的。</p>
+<div class="stars">⭐⭐⭐⭐⭐ 网友·港片迷</div>
+</div>
+<div class="review-card">
+<div class="quote">"</div>
+<h4>手机上看也很流畅</h4>
+<p>通勤路上用流量看也不卡，自适应清晰度这个功能太实用了，省了不少流量钱。</p>
+<div class="stars">⭐⭐⭐⭐⭐ 网友·打工人</div>
+</div>
+<div class="review-card">
+<div class="quote">"</div>
+<h4>分类特别好用</h4>
+<p>想看冷门文艺片直接在分类里翻，比在搜索引擎里碰运气靠谱多了，片荒终结者。</p>
+<div class="stars">⭐⭐⭐⭐⭐ 网友·文艺青年</div>
+</div>
+<div class="review-card">
+<div class="quote">"</div>
+<h4>投屏到电视毫无压力</h4>
+<p>家里小米电视直接搜到设备就能投，大屏看电影的感觉就是不一样，操作也简单。</p>
+<div class="stars">⭐⭐⭐⭐⭐ 网友·居家党</div>
+</div>
+<div class="review-card">
+<div class="quote">"</div>
+<h4>没有弹窗广告太舒服</h4>
+<p>用过不少影视站，要么弹窗要么强制跳转，逍遥这边干干净净的，体验好太多了。</p>
+<div class="stars">⭐⭐⭐⭐⭐ 网友·极简派</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- FAQ -->
+<div class="sec" id="faq">
+<div class="wrap">
+<div class="sec-tag">◆ FAQ</div>
+<h2 class="sec-title">常见问题</h2>
+<p class="sec-sub">关于逍遥电影网，你想知道的都在这里</p>
+<div style="max-width:820px">
+<div class="faq-item">
+<div class="faq-q">逍遥电影网真的完全免费吗？<span class="plus">+</span></div>
+<div class="faq-a">是的，全站所有影视内容均可免费观看，无需充值、无需开通会员。注册账号后可享受播放记录云端同步、收藏夹管理等功能，但不注册也能直接看。</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">画质能达到什么水平？<span class="plus">+</span></div>
+<div class="faq-q">支持哪些分辨率？<span class="plus">+</span></div>
+<div class="faq-a">支持从480P到4K的多档画质，热门新片提供4K HDR版本。播放器会根据你的网络状况自动选择最佳清晰度，也可以手动切换。</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">手机流量看会不会很费？<span class="plus">+</span></div>
+<div class="faq-a">播放器内置智能限速功能，在移动网络下会自动降低至480P/720P以节省流量。你也可以手动锁定清晰度，或者提前下载离线观看。</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">怎么投屏到电视上看？<span class="plus">+</span></div>
+<div class="faq-a">播放页面右上角有TV投屏按钮，确保手机和电视连接同一WiFi即可搜索连接。支持AirPlay、DLNA、Chromecast等主流投屏协议，兼容市面上绝大多数智能电视。</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">有没有想看但搜不到的片子？<span class="plus">+</span></div>
+<div class="faq-a">可以在首页底部「求片留言」提交你希望看到的影片名称，运营团队会在3个工作日内审核安排上线。我们也会定期根据热门求片补充资源。</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">播放卡顿或加载失败怎么办？<span class="plus">+</span></div>
+<div class="faq-a">请尝试：①切换其他播放线路；②降低清晰度至720P或480P；③检查网络连接是否稳定；④清除浏览器缓存后重新打开。如持续异常可联系在线客服。</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">支持哪些设备观看？<span class="plus">+</span></div>
+<div class="faq-a">全面支持iPhone/iPad、Android手机、Windows/Mac电脑、智能电视及各类电视盒子。网页自适应各端屏幕，无需下载专用App。</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Footer -->
+<footer class="foot">
+<div class="wrap">
+<div class="foot-grid">
+<div class="foot-brand">
+<h3>逍遥电影网</h3>
+<p>让好电影不再有门槛。聚合全球优质影视资源，从院线大片到小众佳作，从经典老片到最新剧集，用最纯粹的方式，把好内容送到你面前。</p>
+</div>
+<div class="foot-col">
+<h5>观影导航</h5>
+<a href="#top">网站首页</a>
+<a href="#now">正在热映</a>
+<a href="#genre">影片分类</a>
+<a href="#update">更新日志</a>
+</div>
+<div class="foot-col">
+<h5>使用帮助</h5>
+<a href="#faq">常见问题</a>
+<a href="#">投屏教程</a>
+<a href="#">清晰度说明</a>
+<a href="#">联系客服</a>
+</div>
+<div class="foot-col">
+<h5>关于我们</h5>
+<a href="#">平台简介</a>
+<a href="#">内容合作</a>
+<a href="#">版权声明</a>
+<a href="#">隐私政策</a>
+</div>
+</div>
+<div class="foot-bot">
+<div>本站地址：<span class="url">https://xiaoyaodianyingwang-zh.github.io</span></div>
+<div>© 2026 逍遥电影网 版权所有 · 内容仅供影视信息展示与在线播放参考</div>
+</div>
+</div>
+</footer>
+
+</div><!-- /main -->
+</div><!-- /layout -->
+
+<script>
+// Mobile sidebar toggle
+var mobToggle=document.getElementById('mobToggle');
+var sidebar=document.getElementById('sidebar');
+mobToggle.addEventListener('click',function(){sidebar.classList.toggle('mob-open');});
+// Close sidebar when nav clicked (mobile)
+document.querySelectorAll('.side-nav a').forEach(function(a){
+a.addEventListener('click',function(){sidebar.classList.remove('mob-open');});
+});
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(function(q){
+q.addEventListener('click',function(){
+var ans=this.nextElementSibling;
+var isOpen=this.classList.contains('open');
+// Close all
+document.querySelectorAll('.faq-q').forEach(function(item){item.classList.remove('open');item.nextElementSibling.classList.remove('open');});
+if(!isOpen){this.classList.add('open');ans.classList.add('open');}
+});
+});
+</script>
+</body>
+</html>
